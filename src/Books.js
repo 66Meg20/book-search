@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Author from "./Author.js";
 import "./Books.css";
 export default function Books() {
   const [bookData, setBookData] = useState({ ready: false });
@@ -15,6 +16,8 @@ export default function Books() {
     return (
       <div className="Books">
         <h1> {bookData.title}</h1>
+        <Author />
+
         <form>
           <input type="search" placeholder="book name" />
           <button>Search</button>
@@ -29,6 +32,7 @@ export default function Books() {
   } else {
     let apiUrl = `https://openlibrary.org/search.json?title=from+blood+and+ash`;
     axios.get(apiUrl).then(handleResponse);
+
     return "Loading...";
   }
 }
